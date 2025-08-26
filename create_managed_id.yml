@@ -5,7 +5,7 @@
   vars:
     resource_group_name: aro-rg
     location: eastus
-    identity_name: myUserAssignedIdentity
+    #identity_name: myUserAssignedIdentity
   tasks:
     - name: Create the user-assigned managed identity
       azure.azcollection.azure_rm_managedidentity:
