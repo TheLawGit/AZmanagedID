@@ -4,7 +4,7 @@
   connection: local
   vars:
     resource_group_name: aro-rg
-    location: eastus
+    #location: eastus
     identity_name: userAssignedIdentities
     #identity_name: myUserAssignedIdentity
   tasks:
@@ -14,7 +14,7 @@
         provider: Microsoft.ManagedIdentity
         resource_type: "{{ identity_name }}"
         resource_name: "{{ res_name }}"
-        location: "{{ location }}"
+        #location: "{{ location }}"
         state: present
       register: managed_identity_output
 
