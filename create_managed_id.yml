@@ -11,7 +11,7 @@
     - name: Create the user-assigned managed identity
       azure.azcollection.azure_rm_resource:
         resource_group: "{{ resource_group_name }}"
-        provider: Microsoft.ManagedIdentity
+        provider: ManagedIdentity
         resource_type: "{{ identity_name }}"
         resource_name: "{{ res_name }}"
         #location: "{{ location }}"
