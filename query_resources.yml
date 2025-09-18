@@ -8,7 +8,7 @@
     identity_name: userAssignedIdentities
     #identity_name: myUserAssignedIdentity
   tasks:
-    - name: Create the user-assigned managed identity
+    - name: Query AZ Resources
       azure.azcollection.azure_rm_resource_info:
         resource_group: "{{ resource_group_name }}"
         #provider: ManagedIdentity
