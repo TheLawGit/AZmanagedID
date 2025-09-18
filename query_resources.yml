@@ -16,7 +16,7 @@
         #resource_name: "{{ res_name }}"
         #location: "{{ location }}"
         #state: present
-        api_version: "2025-04-01"
+        api_version: "2024-11-30"
       register: managed_identity_output
 
     - name: Display managed identity details
