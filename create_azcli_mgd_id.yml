@@ -15,3 +15,19 @@
     - name: Display managed identity details
       debug:
         var: managed_identity_output
+
+    - name: Set User Identity Object ID
+      shell: az identity show --name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --query 'principalId' -o tsv
+      register: identity_object_id
+
+    - name: Display User Identity Object ID
+      debug:
+        var: identity_object_id
+
+    - name: Set User Identity Client Identity
+      shell: az identity show --name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --query 'clientId' -o tsv
+      register: identity_client_id
+
+    - name: Display User Identity Client ID
+      debug:
+        var: identity_client_id
