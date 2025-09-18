@@ -12,7 +12,7 @@
       azure.azcollection.azure_rm_resource_info:
         resource_group: "{{ resource_group_name }}"
         provider: ManagedIdentity
-        resource_type: "{{ identity_name }}"
+        resource_type: userAssignedIdentities
         #resource_name: "{{ res_name }}"
         #location: "{{ location }}"
         #state: present
