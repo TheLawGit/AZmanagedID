@@ -12,9 +12,9 @@
       azure.azcollection.azure_rm_resource:
         resource_group: "{{ resource_group_name }}"
         provider: ManagedIdentity
-        resource_type: "{{ identity_name }}"
+        resource_type: userAssignedIdentities
         resource_name: "{{ res_name }}"
-        api_version: "2025-04-01"
+        api_version: "2024-11-30"
         #location: "{{ location }}"
         state: present
       register: managed_identity_output
