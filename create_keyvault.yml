@@ -1,0 +1,10 @@
+---
+- name: Create Azure User-Assigned Managed Identity
+  hosts: localhost
+  connection: local
+  vars:
+    resource_group_name: aro-rg
+    #location: eastus
+    identity_name: userAssignedIdentities
+    #identity_name: myUserAssignedIdentity
+  tasks:

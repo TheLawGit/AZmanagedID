@@ -1,0 +1,23 @@
+---
+- name: Create Azure User-Assigned Managed Identity
+  hosts: localhost
+  connection: local
+  vars:
+    resource_group_name: aro-rg
+    #location: eastus
+    identity_name: userAssignedIdentities
+    #identity_name: myUserAssignedIdentity
+  tasks:
+    - name: Create the user-assigned managed identity
+      azure.azcollection.azure_rm_resource_info:
+        resource_group: "{{ resource_group_name }}"
+        provider: ManagedIdentity
+        #resource_type: "{{ identity_name }}"
+        #resource_name: "{{ res_name }}"
+        #location: "{{ location }}"
+        #state: present
+      register: managed_identity_output
+
+    - name: Display managed identity details
+      debug:
+        var: managed_identity_output
