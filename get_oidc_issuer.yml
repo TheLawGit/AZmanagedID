@@ -4,4 +4,4 @@
 
   tasks:
     - name: Get OIDC Issuer using az cli
-      ansible.builtin.raw: "az aro show --name aro-mid --resource-group aro-rg --query clusterProfile.oidcIssuer --output tsv"
+      ansible.builtin.raw: "/usr/local/bin/az aro show --name aro-mid --resource-group aro-rg --query clusterProfile.oidcIssuer --output tsv"
