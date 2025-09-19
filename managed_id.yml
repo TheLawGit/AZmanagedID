@@ -49,9 +49,4 @@
               azure.workload.indentity/client_id.stdout.lines
     
     - name: Create AZ Federated ID 
-      shell: >
-        az identity federated-credential create --name "'{{ res_name }}-federated" 
-        --identity-name "{{ res_name }}"
-        --resource_group "{{ RESOURCE_GROUP }}"
-        --issuer "{{ ARO_OIDC_ISSUER }}"
-        --subject "system:serviceaccount:"{{ res_namespace }}":devspaces-sa
+      shell: az identity federated-credential create --name "'{{ res_name }}-federated" --identity-name "{{ res_name }}" --resource_group "{{ RESOURCE_GROUP }}" --issuer "{{ ARO_OIDC_ISSUER }}" --subject "system:serviceaccount:"{{ res_namespace }}":devspaces-sa
