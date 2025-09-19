@@ -11,7 +11,7 @@
     - name: Query AZ Resources
       azure.azcollection.azure_rm_openshiftmanagedcluster_info:
         resource_group: aro-rg
-        #name: clusterProfile.oidcIssuer
+        name: aro-mid
       register: aro_output
 
     - name: Display managed identity details
