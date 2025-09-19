@@ -3,6 +3,10 @@
   connection: local
 
   tasks:
+    - name: AZ Environment Vars 
+      ansible.builtin.debug:
+        msg: "Subscription '{{ lookup('ansible.builtin.env', 'subscription') }}'"
+        
     - name: Get OIDC Issuer using az cli
       #command: "az aro show --name aro-mid --resource-group aro-rg --query clusterProfile.oidcIssuer --output tsv"
       shell: /usr/local/bin/az keyvault show --resource-group aro-rg --name azwi-kv-2610
