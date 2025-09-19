@@ -14,6 +14,10 @@
       shell: az aro show --name aro-mid --resource-group aro-rg --query clusterProfile.oidcIssuer --output tsv
       register: oidc_results
 
+    - name: Get keyvault principal using az cli
+      shell: az identity show --name example-user-assigned-identity --resource-group aro-rg --query 'principalId' -o tsv
+      register: kv_principal_results
+
     - name: Display OIDC
       debug:
-        var: oidc_results    
+        var: kv_principal_results 
