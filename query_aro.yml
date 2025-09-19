@@ -1,0 +1,14 @@
+---
+- name: Create Azure User-Assigned Managed Identity
+  hosts: localhost
+  connection: local
+  vars:
+    resource_group_name: aro-rg
+    #location: eastus
+    identity_name: Identities
+    #identity_name: UserAssignedIdentity
+  tasks:
+    - name: Query AZ Resources
+      azure.azcollection.azure_rm_openshiftmanagedcluster_info:
+        resource_group: aro-rg
+        name: clusterProfile.oidcIssuer
