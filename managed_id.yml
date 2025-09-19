@@ -1,0 +1,57 @@
+---
+- name: Create Azure User-Assigned Managed Identity
+  hosts: localhost
+  connection: local
+  vars:
+    res_namespace: "che-'{{ res_name }}'-devspaces"
+  tasks:
+    - name: Create Managed Identity in AZ 
+      azure.azcollection.azure_rm_resource:
+        resource_group: "{{ RESOURCE_GROUP }}"
+        provider: ManagedIdentity
+        resource_type: userAssignedIdentities
+        resource_name: "{{ res_name }}"
+        api_version: "2024-11-30"
+        #location: "{{ location }}"
+        state: present
+        body: { "location": "eastus" }
+      register: managed_identity_output
+
+    - name: Get User Assigned Object Id
+      shell: az identity show --name "{{ res_name }}" --resource-group "{{ RESOURCE_GROUP }}" --query principalId -o tsv
+      register: object_id
+
+    - name: Get User Assigned Client Id
+      shell: az identity show --name "{{ res_name }}" --resource-group "{{ RESOURCE_GROUP }}" --query clientId -o tsv
+      register: client_id
+
+    - name: Ensure OpenShift project exists
+      kubernetes.core.k8s:
+        api_version: project.openshift.io/v1
+        kind: Project
+        state: present
+        definition:
+          metadata:
+            name: "{{ res_namespace }}"
+            annotations:
+              openshift.io/description: created by ansible to use managed identities with devspaces
+    
+    - name: Create Openshift Service Account 
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          api_version: project.openshift.io/v1
+          kind: ServiceAccount
+          metadata:
+            name: devspaces-sa
+            namespace: "{{ res_namespace }}"
+            annotations:
+              azure.workload.indentity/client_id.stdout.lines
+    
+    - name: Create AZ Federated ID 
+      shell: >
+        az identity federated-credential create --name "'{{ res_name }}-federated" 
+        --identity-name "{{ res_name }}"
+        --resource_group "{{ RESOURCE_GROUP }}"
+        --issuer "{{ ARO_OIDC_ISSUER }}"
+        --subject "system:serviceaccount:"{{ res_namespace }}":devspaces-sa

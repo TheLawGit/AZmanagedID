@@ -2,3 +2,10 @@ SUBSCRIPTION: 9dc2c3d2-35a8-4370-8997-b56a57b5778d
 CLIENT_ID: 807252b3-8c49-4304-8371-9d99afa9dbac
 PASSWORD: hFO8Q~Qp3LjBGHR_sikE0-s2u2ds5tWMyy6~3bTt
 TENANT: redhat0.onmicrosoft.com
+ARO_OIDC_ISSUER: https://eastus.oic.aro.azure.com/64dc69e4-d083-49fc-9569-ebece1dd1408/0da51fcd-7dce-4b21-aca1-945a90fba7aa
+CLUSTER_NAME: aro-mid
+RESOURCE_GROUP: aro-rg
+KEYVAULT_NAME: azwi-kv-2610
+KEYVAULT_LOCATION: eastus
+KEYVAULT_URL: https://azwi-kv-2610.vault.azure.net/
+KEYVAULT_RESOURCE_ID: /subscriptions/9dc2c3d2-35a8-4370-8997-b56a57b5778d/resourceGroups/aro-rg/providers/Microsoft.KeyVault/vaults/azwi-kv-2610
