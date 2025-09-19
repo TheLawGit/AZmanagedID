@@ -1,12 +1,14 @@
 ---
 - hosts: localhost
   connection: local
-
+  vars:
+    SUBSCRIPTION: 9dc2c3d2-35a8-4370-8997-b56a57b5778d
+    CLIENT_ID: 807252b3-8c49-4304-8371-9d99afa9dbac
+    PASSWORD: hFO8Q~Qp3LjBGHR_sikE0-s2u2ds5tWMyy6~3bTt
+    TENANT: redhat0.onmicrosoft.com
   tasks:
-    - name: AZ Environment Vars 
-      ansible.builtin.debug:
-        msg: "Subscription '{{ lookup('ansible.builtin.env', 'subscription_id') }}'"
-
+    - name: login to AZ cli 
+      shell: az login --service-principal --username "{{ CLIENT_ID }}" --password "{{ PASSWORD }}" --tenant "{{ TENANT }}"
     - name: Get OIDC Issuer using az cli
       #command: "az aro show --name aro-mid --resource-group aro-rg --query clusterProfile.oidcIssuer --output tsv"
       shell: /usr/local/bin/az keyvault show --resource-group aro-rg --name azwi-kv-2610
