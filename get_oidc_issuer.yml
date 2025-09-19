@@ -5,4 +5,4 @@
   tasks:
     - name: Get OIDC Issuer using az cli
       #command: "az aro show --name aro-mid --resource-group aro-rg --query clusterProfile.oidcIssuer --output tsv"
-      shell: az keyvault show --resource-group aro-rg --name azwi-kv-2610
+      shell: ~/.local/bin/az keyvault show --resource-group aro-rg --name azwi-kv-2610
