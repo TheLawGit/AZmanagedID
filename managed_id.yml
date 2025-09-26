@@ -8,6 +8,9 @@
     federated_subject: "system:serviceaccount:'{{ res_namespace }}':devspaces-sa"
 
   tasks:
+    - name: login to AZ cli 
+      shell: az login --service-principal --username "{{ CLIENT_ID }}" --password "{{ PASSWORD }}" --tenant "{{ TENANT }}"
+
     - name: Create Managed Identity in AZ 
       azure.azcollection.azure_rm_resource:
         resource_group: "{{ RESOURCE_GROUP }}"
