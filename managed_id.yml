@@ -32,7 +32,7 @@
       register: client_id
 
     - name: Ensure OpenShift project exists
-      kubernetes.core.k8s:
+      redhat.openshift.k8s:
         api_version: project.openshift.io/v1
         kind: Project
         state: present
@@ -43,7 +43,7 @@
               openshift.io/description: created by ansible to use managed identities with devspaces
     
     - name: Create Openshift Service Account 
-      kubernetes.core.k8s:
+      redhat.openshift.k8s:
         state: present
         definition:
           api_version: project.openshift.io/v1
