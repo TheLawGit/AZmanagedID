@@ -4,6 +4,8 @@
   connection: local
   vars:
     res_namespace: "che-'{{ res_name }}'-devspaces"
+    federated_name: "'{{ res_name }}'-federated"
+
   tasks:
     - name: Create Managed Identity in AZ 
       azure.azcollection.azure_rm_resource:
@@ -48,5 +50,5 @@
             annotations:
               azure.workload.indentity/client_id.stdout.lines
     
-    - name: Create AZ Federated ID 
-      shell: "az identity federated-credential create --name '{{ res_name }}'-federated --identity-name '{{ res_name }}' --resource_group '{{ RESOURCE_GROUP }}' --issuer '{{ ARO_OIDC_ISSUER }}' --subject system:serviceaccount:'{{ res_namespace }}':devspaces-sa"
+    - name: Create AZ Federated ID
+      shell: az identity federated-credential create --name "{{ federated_name }}" --identity-name "{{ res_name }}"" --resource_group "{{ RESOURCE_GROUP }}" --issuer "{{ ARO_OIDC_ISSUER }}" --subject "system:serviceaccount:'{{ res_namespace }}':devspaces-sa"
