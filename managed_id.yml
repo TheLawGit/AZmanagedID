@@ -53,6 +53,7 @@
             name: "{{ res_namespace }}"
             annotations:
               openshift.io/description: created by ansible to use managed identities with devspaces
+              openshift.io/requester: 'system:serviceaccount:openshift-operators:che'
 
     # - name: Set variable for Openshift Service Account
     #   ansible.builtin.set_fact:
