@@ -6,7 +6,7 @@
   vars:
     res_namespace: "che-{{ res_name }}-devspaces"
     federated_name: "{{ res_name }}-federated"
-    federated_subject: "system:serviceaccount:'{{ res_namespace }}':devspaces-sa"
+    federated_subject: "system:serviceaccount:{{ res_namespace }}:devspaces-sa"
 
   tasks:
     - name: login to AZ cli 
