@@ -55,8 +55,8 @@
               app.kubernetes.io/component: workspaces-namespace
               app.kubernetes.io/part-of: che.eclipse.org
             annotations:
-              openshift.io/description: created by ansible to use managed identities with devspaces
-              che.eclipse.org/username: "{{ res_name }}"
+              #openshift.io/description: created by ansible to use managed identities with devspaces
+              che.eclipse.org/username: "kube:admin"
 
     # - name: Set variable for Openshift Service Account
     #   ansible.builtin.set_fact:
