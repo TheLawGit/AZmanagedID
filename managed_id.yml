@@ -46,7 +46,7 @@
     - name: Ensure OpenShift project exists
       redhat.openshift.k8s:
         api_version: project.openshift.io/v1
-        kind: Project
+        kind: Namespace
         state: present
         definition:
           metadata:
@@ -61,7 +61,7 @@
     - name: Patch OpenShift project
       redhat.openshift.k8s:
         api_version: project.openshift.io/v1
-        kind: Project
+        kind: Namespace
         state: patched
         name: "{{ res_namespace }}"
         definition:
