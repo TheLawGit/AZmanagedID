@@ -52,8 +52,8 @@
           metadata:
             name: "{{ res_namespace }}"
             labels:
-              app.kubernetes.io/component: workspaces-namespace
-              app.kubernetes.io/part-of: che.eclipse.org
+              app.kubernetes.io/component: "workspaces-namespace"
+              app.kubernetes.io/part-of: "che.eclipse.org"
             annotations:
               #openshift.io/description: created by ansible to use managed identities with devspaces
               che.eclipse.org/username: "kube:admin"
@@ -67,8 +67,8 @@
         definition:
           metadata:
             labels:
-              app.kubernetes.io/component: workspaces-namespace
-              app.kubernetes.io/part-of: che.eclipse.org
+              app.kubernetes.io/component: "workspaces-namespace"
+              app.kubernetes.io/part-of: "che.eclipse.org"
             annotations:
               che.eclipse.org/username: "kube:admin"
 
