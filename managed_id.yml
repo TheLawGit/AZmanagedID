@@ -46,7 +46,7 @@
     - name: Ensure OpenShift project exists
       redhat.openshift.k8s:
         api_version: project.openshift.io/v1
-        kind: Namespace
+        kind: Project
         state: present
         definition:
           metadata:
