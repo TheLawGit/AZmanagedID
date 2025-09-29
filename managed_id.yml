@@ -4,8 +4,8 @@
   connection: local
   gather_facts: false
   vars:
-    res_namespace: "che-'{{ res_name | replace('\\', '') }}'-devspaces"
-    federated_name: "'{{ res_name | replace('\\', '') }}'-federated"
+    res_namespace: "che-'{{ res_name }}'-devspaces"
+    federated_name: "'{{ res_name }}'-federated"
     federated_subject: "system:serviceaccount:'{{ res_namespace }}':devspaces-sa"
 
   tasks:
@@ -47,7 +47,7 @@
         state: present
         definition:
           metadata:
-            name: "{{ res_namespace }}"
+            name: "{{ res_namespace | replace('\\', '') }}"
             annotations:
               openshift.io/description: created by ansible to use managed identities with devspaces
     
@@ -59,7 +59,7 @@
           kind: ServiceAccount
           metadata:
             name: devspaces-sa
-            namespace: "{{ res_namespace }}"
+            namespace: "{{ res_namespace | replace('\\', '') }}"
             annotations:
               azure.workload.indentity/client_id.stdout.lines
     
