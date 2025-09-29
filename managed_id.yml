@@ -3,6 +3,7 @@
   hosts: localhost
   connection: local
   vars:
+    res_name: "{{ res_name | replace('\\', '') }}"
     res_namespace: "che-'{{ res_name }}'-devspaces"
     federated_name: "'{{ res_name }}'-federated"
     federated_subject: "system:serviceaccount:'{{ res_namespace }}':devspaces-sa"
@@ -26,10 +27,18 @@
     - name: Get User Assigned Object Id
       shell: az identity show --name "{{ res_name }}" --resource-group "{{ RESOURCE_GROUP }}" --query principalId -o tsv
       register: object_id
+    
+    - name: Object_ID Variable
+      debug:
+        msg: "{{ object_id }}"
 
     - name: Get User Assigned Client Id
       shell: az identity show --name "{{ res_name }}" --resource-group "{{ RESOURCE_GROUP }}" --query clientId -o tsv
       register: client_id
+
+    - name: Client_ID Variable
+      debug:
+        msg: "{{ client_id }}"
 
     - name: Ensure OpenShift project exists
       redhat.openshift.k8s:
