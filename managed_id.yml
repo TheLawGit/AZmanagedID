@@ -58,6 +58,20 @@
               #openshift.io/description: created by ansible to use managed identities with devspaces
               che.eclipse.org/username: "kube:admin"
 
+    - name: Patch OpenShift project
+      redhat.openshift.k8s:
+        api_version: project.openshift.io/v1
+        kind: Project
+        state: patched
+        name: "{{ res_namespace }}"
+        definition:
+          metadata:
+            labels:
+              app.kubernetes.io/component: workspaces-namespace
+              app.kubernetes.io/part-of: che.eclipse.org
+            annotations:
+              che.eclipse.org/username: "kube:admin"
+
     # - name: Set variable for Openshift Service Account
     #   ansible.builtin.set_fact:
     #     az_identity: "azure.workload.identity/client-id: {{ client_id.stdout }}"
