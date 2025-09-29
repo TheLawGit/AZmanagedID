@@ -47,7 +47,7 @@
         state: present
         definition:
           metadata:
-            name: "{{ res_namespace | replace('\\', '') }}"
+            name: {{ res_namespace }}
             annotations:
               openshift.io/description: created by ansible to use managed identities with devspaces
     
@@ -59,7 +59,7 @@
           kind: ServiceAccount
           metadata:
             name: devspaces-sa
-            namespace: "{{ res_namespace | replace('\\', '') }}"
+            namespace: {{ res_namespace }}
             annotations:
               azure.workload.indentity/client_id.stdout.lines
     
