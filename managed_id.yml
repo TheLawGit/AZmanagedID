@@ -45,8 +45,8 @@
 
     - name: Ensure OpenShift project exists
       redhat.openshift.k8s:
-        api_version: project.openshift.io/v1
-        kind: Project
+        api_version: v1
+        kind: Namespace
         state: present
         definition:
           metadata:
@@ -58,19 +58,19 @@
               #openshift.io/description: created by ansible to use managed identities with devspaces
               che.eclipse.org/username: "kube:admin"
 
-    - name: Patch OpenShift project
-      redhat.openshift.k8s:
-        api_version: project.openshift.io/v1
-        kind: Namespace
-        state: patched
-        name: "{{ res_namespace }}"
-        definition:
-          metadata:
-            labels:
-              app.kubernetes.io/component: "workspaces-namespace"
-              app.kubernetes.io/part-of: "che.eclipse.org"
-            annotations:
-              che.eclipse.org/username: "kube:admin"
+    # - name: Patch OpenShift project
+    #   redhat.openshift.k8s:
+    #     api_version: v1
+    #     kind: Namespace
+    #     state: patched
+    #     name: "{{ res_namespace }}"
+    #     definition:
+    #       metadata:
+    #         labels:
+    #           app.kubernetes.io/component: "workspaces-namespace"
+    #           app.kubernetes.io/part-of: "che.eclipse.org"
+    #         annotations:
+    #           che.eclipse.org/username: "kube:admin"
 
     # - name: Set variable for Openshift Service Account
     #   ansible.builtin.set_fact:
