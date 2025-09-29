@@ -1,2 +1,2 @@
 collections:
-  - kubernetes.core
+  - azure.azcollection
