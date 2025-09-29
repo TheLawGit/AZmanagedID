@@ -40,6 +40,9 @@
       debug:
         msg: "{{ client_id.stdout }}"
 
+    - name: "Create AZ Role Assignment for Key Vault {{ KEYVAULT_NAME }}"
+      shell: az role assignment create --assignee-object-id "{{ object_id.stdout }}" --role "Key Vault Secrets User" --scope "{{ KEYVAULT_RESOURCE_ID }}" --assignee-principal-type ServicePrincipal
+
     - name: Ensure OpenShift project exists
       redhat.openshift.k8s:
         api_version: project.openshift.io/v1
