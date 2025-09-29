@@ -2,10 +2,10 @@
 - name: Create Azure User-Assigned Managed Identity
   hosts: localhost
   connection: local
+  gather_facts: false
   vars:
-    res_name: "{{ res_name | replace('\\', '') }}"
-    res_namespace: "che-'{{ res_name }}'-devspaces"
-    federated_name: "'{{ res_name }}'-federated"
+    res_namespace: "che-'{{ res_name | replace('\\', '') }}'-devspaces"
+    federated_name: "'{{ res_name | replace('\\', '') }}'-federated"
     federated_subject: "system:serviceaccount:'{{ res_namespace }}':devspaces-sa"
 
   tasks:
