@@ -64,8 +64,7 @@
           metadata:
             name: devspaces-sa
             namespace: '{{ res_namespace }}'
-            annotations:
-              '{{ az_identity }}'
+            annotations: '{{ az_identity }}'
     
     - name: Create AZ Federated ID
       shell: az identity federated-credential create --name "{{ federated_name }}" --identity-name "{{ res_name }}" --resource_group "{{ RESOURCE_GROUP }}" --issuer "{{ ARO_OIDC_ISSUER }}" --subject "{{ federated_subject }}"
