@@ -30,7 +30,7 @@
     
     - name: Object_ID Variable
       debug:
-        msg: "{{ object_id }}"
+        msg: "{{ object_id.stdout_lines }}"
 
     - name: Get User Assigned Client Id
       shell: az identity show --name "{{ res_name }}" --resource-group "{{ RESOURCE_GROUP }}" --query clientId -o tsv
@@ -38,7 +38,7 @@
 
     - name: Client_ID Variable
       debug:
-        msg: "{{ client_id }}"
+        msg: "{{ client_id.stdout_lines }}"
 
     - name: Ensure OpenShift project exists
       redhat.openshift.k8s:
@@ -61,7 +61,7 @@
             name: devspaces-sa
             namespace: '{{ res_namespace }}'
             annotations:
-              azure.workload.indentity/client_id.stdout.lines
+              "azure.workload.indentity/{{ client_id.stdout.lines }}"
     
     - name: Create AZ Federated ID
       shell: az identity federated-credential create --name "{{ federated_name }}" --identity-name "{{ res_name }}" --resource_group "{{ RESOURCE_GROUP }}" --issuer "{{ ARO_OIDC_ISSUER }}" --subject "{{ federated_subject }}"
