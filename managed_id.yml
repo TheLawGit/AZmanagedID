@@ -4,8 +4,8 @@
   connection: local
   gather_facts: false
   vars:
-    res_namespace: "che-'{{ res_name }}'-devspaces"
-    federated_name: "'{{ res_name }}'-federated"
+    res_namespace: "che-{{ res_name }}-devspaces"
+    federated_name: "{{ res_name }}-federated"
     federated_subject: "system:serviceaccount:'{{ res_namespace }}':devspaces-sa"
 
   tasks:
