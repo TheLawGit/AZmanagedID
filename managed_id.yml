@@ -51,6 +51,9 @@
         definition:
           metadata:
             name: "{{ res_namespace }}"
+            labels:
+              app.kubernetes.io/component: workspaces-namespace
+              app.kubernetes.io/part-of: che.eclipse.org
             annotations:
               openshift.io/description: created by ansible to use managed identities with devspaces
               openshift.io/requester: 'system:serviceaccount:openshift-operators:che'
