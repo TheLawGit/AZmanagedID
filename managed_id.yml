@@ -68,4 +68,4 @@
               azure.workload.identity/client-id: "{{ client_id.stdout }}"
     
     - name: Create AZ Federated ID
-      shell: az identity federated-credential create --name "{{ federated_name }}" --identity-name "{{ res_name }}" --resource_group "{{ RESOURCE_GROUP }}" --issuer "{{ ARO_OIDC_ISSUER }}" --subject "{{ federated_subject }}"
+      shell: az identity federated-credential create --name "{{ federated_name }}" --identity-name "{{ res_name }}" --resource-group "{{ RESOURCE_GROUP }}" --issuer "{{ ARO_OIDC_ISSUER }}" --subject "{{ federated_subject }}"
