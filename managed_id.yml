@@ -50,7 +50,11 @@
             name: '{{ res_namespace }}'
             annotations:
               openshift.io/description: created by ansible to use managed identities with devspaces
-    
+
+    - name: Set variable for Openshift Service Account
+      ansible.builtin.set_fact:
+        az_identity: "azure.workload.identity/{{ client_id.stdout_lines }}"
+
     - name: Create Openshift Service Account 
       redhat.openshift.k8s:
         state: present
@@ -61,7 +65,7 @@
             name: devspaces-sa
             namespace: '{{ res_namespace }}'
             annotations:
-              "azure.workload.indentity/{{ client_id.stdout_lines }}"
+              '{{ az_identity }}'
     
     - name: Create AZ Federated ID
       shell: az identity federated-credential create --name "{{ federated_name }}" --identity-name "{{ res_name }}" --resource_group "{{ RESOURCE_GROUP }}" --issuer "{{ ARO_OIDC_ISSUER }}" --subject "{{ federated_subject }}"
