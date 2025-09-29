@@ -61,7 +61,7 @@
             name: devspaces-sa
             namespace: '{{ res_namespace }}'
             annotations:
-              "azure.workload.indentity/{{ client_id.stdout.lines }}"
+              "azure.workload.indentity/{{ client_id.stdout_lines }}"
     
     - name: Create AZ Federated ID
       shell: az identity federated-credential create --name "{{ federated_name }}" --identity-name "{{ res_name }}" --resource_group "{{ RESOURCE_GROUP }}" --issuer "{{ ARO_OIDC_ISSUER }}" --subject "{{ federated_subject }}"
