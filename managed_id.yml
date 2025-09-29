@@ -30,7 +30,7 @@
     
     - name: Object_ID Variable
       debug:
-        msg: "{{ object_id.stdout_lines }}"
+        msg: "{{ object_id.stdout }}"
 
     - name: Get User Assigned Client Id
       shell: az identity show --name "{{ res_name }}" --resource-group "{{ RESOURCE_GROUP }}" --query clientId -o tsv
@@ -38,7 +38,7 @@
 
     - name: Client_ID Variable
       debug:
-        msg: "{{ client_id.stdout_lines }}"
+        msg: "{{ client_id.stdout }}"
 
     - name: Ensure OpenShift project exists
       redhat.openshift.k8s:
@@ -53,7 +53,7 @@
 
     - name: Set variable for Openshift Service Account
       ansible.builtin.set_fact:
-        az_identity: "azure.workload.identity/client-id: {{ client_id.stdout_lines }}"
+        az_identity: "azure.workload.identity/client-id: {{ client_id.stdout }}"
 
     - name: Create Openshift Service Account 
       redhat.openshift.k8s:
