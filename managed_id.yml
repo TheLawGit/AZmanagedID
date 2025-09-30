@@ -19,7 +19,6 @@
         resource_type: userAssignedIdentities
         resource_name: "{{ res_name }}"
         api_version: "2024-11-30"
-        #location: "{{ location }}"
         state: present
         body: { "location": "eastus" }
       register: managed_identity_output
